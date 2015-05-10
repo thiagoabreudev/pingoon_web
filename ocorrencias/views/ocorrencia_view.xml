@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_ocorrencia_graph">
+            <field name="name">view.ocorrencia.graph</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <graph string="Graficos">
+                    <field name="state" type="bar" group="True"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ocorrencia_search">
+            <field name="name">view.ocorrencia.search</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <search string="Filtro">
+                    <group col="2" colspan="4">
+                        <group expand="1" string="Agrupar por...">
+                            <filter string="Estado" name="state" context="{'group_by': 'state'}"/>
+                        </group>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_orcorrencia_form">
+            <field name="name">view.ocorrencia.form</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de manutencao de ocorrencia" version="8.0">
+                    <header colspan="4">
+                        <button name="button_visualizar" string="Visualizar" type="object"
+                                class="oe_highlight" state="2"/>
+                        <button name="button_atender" string="Atender" type="object"
+                                class="oe_highlight" state="2"/>
+                        <button name="button_fehcar" string="Fechar" type="object"
+                                class="oe_highlight" state="2"/>
+                        <button name="button_cancelar" string="Cancelar" type="object"
+                                class="oe_highlight" state="2"/>
+                        <field name="state" widget="statusbar" statusbar_visible="1, 2, 3, 4, 5"
+                               nolabel="1" colspan="2"
+                               statusbar_colors="{'waiting_date':'blue'}"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <label string="Ocorrencia:"/>
+                            <field name="id" class="oe_inline"/>
+                        </h1>
+                        <group col="4" cols="4">
+                            <field name="ocorrencia_titulo" placeholder="Titulo"/>
+                            <field name="funcionario_id" placeholder="Funcionario"/>
+                            <newline/>
+                        </group>
+                        <separator string="Descricao do problema:"/>
+                        <group col="2">
+                            <field name="ocorrencia_descricao" placeholder="Descricao" nolabel="1"/>
+                            <newline/>
+                        </group>
+                        <separator/>
+                        <group col="4">
+                            <notebook>
+                                <page string="Mapa">
+                                    <center>
+                                        <!--<iframe-->
+                                                <!--width="800"-->
+                                                <!--height="600"-->
+                                                <!--frameborder="0" style="border:0"-->
+                                                <!--src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;maptype=satellite">-->
+                                        <!--</iframe>-->
+                                        <iframe
+                                                width="800"
+                                                height="600"
+                                                frameborder="0" style="border:0"
+                                                src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;destination=-33.8569+151.2152">
+                                        </iframe>
+                                        <!--<field name="ocorrencia_longitude"/>-->
+                                    </center>
+
+                                    <!--<field name="ocorrencia_latitude"/>-->
+                                    <!--<button name="abrir_mapa" type="object" string="Mapa"-->
+                                    <!--icon="mapa"/>-->
+                                    <newline/>
+                                </page>
+                                <page string="Foto">
+                                    <center>
+                                        <field name="ocorrencia_foto" widget="image"
+                                               options='{"size": [600, 600]}'
+                                               nolabel="1"/>
+                                    </center>
+                                </page>
+                                <page string="Complemento">
+                                    <field name="ocorrencia_descricao_complementar"
+                                           placeholder="Descricao complementar"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ocorrencia_tree">
+            <field name="name">view.ocorrencia.tree</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <tree string="Ocorrencias" version="8.0"
+                      colors="blue:state in ('1');#036564:state in ('2');green:state in ('3');black:state in ('4');red:state in ('5'))">
+                    <field name="id" string="Nro Ocorrencia"/>
+                    <field name="ocorrencia_titulo"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

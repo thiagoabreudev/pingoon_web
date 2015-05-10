@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_funcionario_tree">
+            <field name="name">view.funcionario.tree</field>
+            <field name="model">funcionario</field>
+            <field name="arch" type="xml">
+                <tree string="Funcionarios" version="8.0">
+                    <field name="funcionario_nome"/>
+                    <field name="funcionario_tipo"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_funcionario_form">
+            <field name="name">view.funcionario.form</field>
+                <field name="model">funcionario</field>
+            <field name="arch" type="xml">
+                <form string="Cadastro de funcionarios" version="8.0">
+                    <header>
+                        <h1>
+                            <center>
+                                Cadastro de funcionarios
+                            </center>
+                        </h1>
+                    </header>
+                    <group col="4" cols="4">
+                        <field name="funcionario_nome"/>
+                        <newline/>
+                        <field name="funcionario_tipo"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="action_ocorrencia">
+            <field name="name">ocorrencia</field>
+            <field name="res_model">ocorrencia</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+    </data>
+</openerp>

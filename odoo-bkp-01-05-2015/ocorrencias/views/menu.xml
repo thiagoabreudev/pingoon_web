@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <menuitem name="Ocorrencias" id="menu_ocorrencias_principal"/>
+       <!--Ocorrencias-->
+        <menuitem name="Ocorrencias" id="menu_ocorrencias" parent="menu_ocorrencias_principal"/>
+        <menuitem name="Lancamento de ocorrencia" id="menu_ocorrencias_lancamento"
+                  parent="menu_ocorrencias" action="action_ocorrencia"/>
+        <menuitem name="Lancamento de ocorrencia2" id="menu_ocorrencias_lancamento2"
+                  parent="menu_ocorrencias" action="action_home_page"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/odoo.iml" filepath="$PROJECT_DIR$/.idea/odoo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pingoon/.idea/pingoon.iml" filepath="$PROJECT_DIR$/../pingoon/.idea/pingoon.iml" />
+    </modules>
+  </component>
+</project>
+
