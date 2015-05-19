@@ -8,7 +8,7 @@ class Ocorrencia(osv.Model):
     _name = 'ocorrencia'
     _inherit = 'ocorrencia'
 
-    def abrir_mapa(self, cr, uid, ids, context):
+    def button_mapa(self, cr, uid, ids, context):
         dados_ocorrencia = self.read(cr, uid, ids, ['ocorrencia_longitude', 'ocorrencia_latitude'])
         longitude = latitude = 0
 

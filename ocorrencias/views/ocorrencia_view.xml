@@ -57,32 +57,33 @@
                         <group col="2">
                             <field name="ocorrencia_descricao" placeholder="Descricao" nolabel="1"/>
                             <newline/>
+                            <button type="object" name="button_mapa" icon="mapa" string="Ver mapa"/>
                         </group>
                         <separator/>
                         <group col="4">
                             <notebook>
-                                <page string="Mapa">
-                                    <center>
+                                <!--<page string="Mapa">-->
+                                    <!--<center>-->
+                                        <!--&lt;!&ndash;<iframe&ndash;&gt;-->
+                                                <!--&lt;!&ndash;width="800"&ndash;&gt;-->
+                                                <!--&lt;!&ndash;height="600"&ndash;&gt;-->
+                                                <!--&lt;!&ndash;frameborder="0" style="border:0"&ndash;&gt;-->
+                                                <!--&lt;!&ndash;src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;maptype=satellite">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</iframe>&ndash;&gt;-->
                                         <!--<iframe-->
                                                 <!--width="800"-->
                                                 <!--height="600"-->
                                                 <!--frameborder="0" style="border:0"-->
-                                                <!--src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;maptype=satellite">-->
+                                                <!--src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;destination=-33.8569+151.2152">-->
                                         <!--</iframe>-->
-                                        <iframe
-                                                width="800"
-                                                height="600"
-                                                frameborder="0" style="border:0"
-                                                src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDVGKxIFqpd4Ov0UdiO_3vtwMWWAorJ_XM&amp;center=-33.8569,151.2152&amp;zoom=18&amp;destination=-33.8569+151.2152">
-                                        </iframe>
-                                        <!--<field name="ocorrencia_longitude"/>-->
-                                    </center>
+                                        <!--&lt;!&ndash;<field name="ocorrencia_longitude"/>&ndash;&gt;-->
+                                    <!--</center>-->
 
-                                    <!--<field name="ocorrencia_latitude"/>-->
-                                    <!--<button name="abrir_mapa" type="object" string="Mapa"-->
-                                    <!--icon="mapa"/>-->
-                                    <newline/>
-                                </page>
+                                    <!--&lt;!&ndash;<field name="ocorrencia_latitude"/>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button name="abrir_mapa" type="object" string="Mapa"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;icon="mapa"/>&ndash;&gt;-->
+                                    <!--<newline/>-->
+                                <!--</page>-->
                                 <page string="Foto">
                                     <center>
                                         <field name="ocorrencia_foto" widget="image"
@@ -110,6 +111,7 @@
                     <field name="id" string="Nro Ocorrencia"/>
                     <field name="ocorrencia_titulo"/>
                     <field name="state"/>
+                    <button type="object" name="button_mapa" icon="mapa" string="Ver mapa"/>
                 </tree>
             </field>
         </record>
