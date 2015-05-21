@@ -5,12 +5,25 @@ import time
 from orm import Persistencia
 import json
 
+
 def search(environ, start_response):
     pass
 
 
+def read(environ, start_response):
+    orm = Persistencia()
+    start_response('200 OK', [('Content-type', 'application/json')])
+    params = environ['params']
+    ocorrencia_ids = params.get('ocorrencia_ids', [])
+    if ocorrencia_ids and isinstance(ocorrencia_ids, str):
+        ocorrencia_ids = ocorrencia_ids.split(',')
+    ocorrencia_ids = map(lambda i: int(i), ocorrencia_ids)
+    dados = orm.read(ocorrencia_ids, fields='state', objeto='ocorrencia')
+    res = json.dumps({'dados': dados})
+    return res
+
+
 def create_ocorrencia(environ, start_response):
-    # http://localhost:8081/criaocorrencia?ocorrencia_titulo=diego;ocorrencia_descricao=teste
     orm = Persistencia()
     start_response('200 OK', [('Content-type', 'application/json')])
     params = environ['params']
@@ -39,7 +52,7 @@ if __name__ == '__main__':
     from wsgiref.simple_server import make_server
 
     dispatcher = PathDispatcher()
-    dispatcher.register('GET', '/search', search)
+    dispatcher.register('GET', '/pesquisa', read)
     dispatcher.register('POST', '/criaocorrencia', create_ocorrencia)
     httpd = make_server('', 8081, dispatcher)
     print ('Servindo na porta 8080...')

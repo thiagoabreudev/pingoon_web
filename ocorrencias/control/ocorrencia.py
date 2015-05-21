@@ -15,7 +15,13 @@ class Ocorrencia(osv.Model):
         for dado in dados_ocorrencia:
             longitude = dado.get('ocorrencia_longitude')
             latitude = dado.get('ocorrencia_latitude')
-        url = "http://www.google.com.br/maps/@%s,%s" % (longitude, latitude)
+
+        # url = "https://maps.googleapis.com/maps/api/staticmap?center="+\
+        #       latitude+","+longitude+"&markers="+latitude+"," + longitude \
+        #       +"&zoom=16&size=280x280&maptype=roadmap"
+        url = "http://www.google.com.br/maps/@%s,%s&markers=%s,%s&zoom=16" % (longitude, latitude,
+                                                                      longitude, latitude)
+        print url
         return {
             'type': 'ir.actions.act_url',
             'url': url,

@@ -26,3 +26,11 @@ class Persistencia(object):
         res_id = self.models.execute_kw(self.db, self.uid, self.password, objeto, 'create', [vals])
         return res_id
 
+    def read(self, ids=None, **Kwargs):
+        objeto = Kwargs.get('objeto')
+        fields = Kwargs.get('fields') #Todo: fields deve vir um lista com os campos
+        res = False
+        if ids:
+            res = self.models.execute_kw(self.db, self.uid, self.password, objeto, 'read', [ids],
+                                         {'fields': [fields]})
+        return res
