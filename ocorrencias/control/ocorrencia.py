@@ -18,7 +18,7 @@ class Ocorrencia(osv.Model):
 
         url = "https://maps.googleapis.com/maps/api/staticmap?center="+\
               latitude+","+longitude+"&markers="+latitude+"," + longitude \
-              +"&zoom=16&size=1024x1024&maptype=roadmap"
+              +"&zoom=16&size=640x640"
         # url = "http://www.google.com.br/maps/@%s,%s&markers=%s,%s&zoom=16" % (longitude, latitude,
         #                                                                       longitude, latitude)
         return {
