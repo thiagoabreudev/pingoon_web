@@ -2,11 +2,22 @@
 # -*- encoding: utf-8 -*-
 
 from openerp.osv import osv
+import requests
+import json
 
 
 class Ocorrencia(osv.Model):
     _name = 'ocorrencia'
     _inherit = 'ocorrencia'
+
+    def create(self, cr, uid, vals):
+        endereco_aproximado = self.get_endereco_aproximado(vals.get('ocorrencia_longitude'),
+                                                           vals.get('ocorrencia_latitude'))
+        mapa = self.get_mapa(vals.get('ocorrencia_longitude'), vals.get('ocorrencia_latitude'))
+        vals['ocorrencia_endereco_aproximado'] = endereco_aproximado
+        vals['ocorrencia_mapa'] = mapa
+        res = super(Ocorrencia, self).create(cr, uid, vals)
+        return res
 
     def button_mapa(self, cr, uid, ids, context):
         dados_ocorrencia = self.read(cr, uid, ids, ['ocorrencia_longitude', 'ocorrencia_latitude'])
@@ -16,11 +27,8 @@ class Ocorrencia(osv.Model):
             longitude = dado.get('ocorrencia_longitude')
             latitude = dado.get('ocorrencia_latitude')
 
-        url = "https://maps.googleapis.com/maps/api/staticmap?center="+\
-              longitude+","+latitude+"&markers="+longitude+"," + latitude \
-              +"&zoom=30&size=640x640"
-        # url = "http://www.google.com.br/maps/@%s,%s&markers=%s,%s&zoom=16" % (longitude, latitude,
-        #                                                                       longitude, latitude)
+        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + longitude + "," + latitude+\
+              "&markers="+longitude+"," + latitude + "&zoom=16&size=640x640"
         return {
             'type': 'ir.actions.act_url',
             'url': url,
@@ -42,3 +50,25 @@ class Ocorrencia(osv.Model):
     def button_cancelar(self, cr, uid, ids, context):
         res = self.write(cr, uid, ids, vals={'state': '5'})
         return res
+
+    @staticmethod
+    def get_endereco_aproximado(longitude, latitude):
+        url = 'http://maps.google.com/maps/api/geocode/json?address={long},{lat}&sensor=false'
+        url = url.format(long=longitude, lat=latitude)
+        requisicao = requests.get(url)
+        endereco = "Nao foi possivel encontrar endereco aproximado"
+        if requisicao.status_code == 200:
+            dados = json.loads(requisicao.content)
+            endereco = dados.get('results')[0].get('formatted_address').encode('utf-8')
+        return endereco
+
+    @staticmethod
+    def get_mapa(longitude, latitude):
+        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + longitude + "," +latitude +\
+              "&markers="+longitude+"," + latitude + "&zoom=17&size=640x640"
+        requisicao = requests.get(url)
+        mapa = False
+        if requisicao.status_code == 200:
+            mapa = requisicao.content
+            mapa = mapa.encode('base64')
+        return mapa
