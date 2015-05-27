@@ -55,5 +55,5 @@ if __name__ == '__main__':
     dispatcher.register('GET', '/pesquisa', read)
     dispatcher.register('POST', '/criaocorrencia', create_ocorrencia)
     httpd = make_server('', 8081, dispatcher)
-    print ('Servindo na porta 8080...')
+    print ('Servindo na porta 8081...')
     httpd.serve_forever()

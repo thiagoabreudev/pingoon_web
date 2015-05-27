@@ -3,7 +3,7 @@ import cgi
 
 def notofund_404(evirion, start_response):
     start_response('404 Pagina nao encontrada', [('Content-type', 'text/plain')])
-    return [b'not Found']
+    return [b'Pagina nao encontrada']
 
 
 class PathDispatcher:

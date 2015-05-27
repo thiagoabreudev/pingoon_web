@@ -15,3 +15,7 @@ class Funcionario(osv.Model):
         'funcionario_nome': fields.char('Nome', size=100),
         'funcionario_tipo': fields.selection(TIPO_FUNCIONARIO, 'Tipo')
     }
+
+    _defaults = {
+        'active': True
+    }

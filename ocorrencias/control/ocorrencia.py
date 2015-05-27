@@ -20,8 +20,7 @@ class Ocorrencia(osv.Model):
         #       latitude+","+longitude+"&markers="+latitude+"," + longitude \
         #       +"&zoom=16&size=280x280&maptype=roadmap"
         url = "http://www.google.com.br/maps/@%s,%s&markers=%s,%s&zoom=16" % (longitude, latitude,
-                                                                      longitude, latitude)
-        print url
+                                                                              longitude, latitude)
         return {
             'type': 'ir.actions.act_url',
             'url': url,
@@ -43,4 +42,3 @@ class Ocorrencia(osv.Model):
     def button_cancelar(self, cr, uid, ids, context):
         res = self.write(cr, uid, ids, vals={'state': '5'})
         return res
-    
