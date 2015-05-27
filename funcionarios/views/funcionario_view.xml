@@ -27,6 +27,7 @@
                         <field name="funcionario_nome"/>
                         <newline/>
                         <field name="funcionario_tipo"/>
+                        <field name="active"/>
                     </group>
                 </form>
             </field>
