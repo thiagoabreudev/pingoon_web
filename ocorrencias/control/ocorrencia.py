@@ -59,7 +59,8 @@ class Ocorrencia(osv.Model):
         endereco = "Nao foi possivel encontrar endereco aproximado"
         if requisicao.status_code == 200:
             dados = json.loads(requisicao.content)
-            endereco = dados.get('results')[0].get('formatted_address').encode('utf-8')
+            if dados.get('results'):
+                endereco = dados.get('results')[0].get('formatted_address').encode('utf-8')
         return endereco
 
     @staticmethod
