@@ -16,6 +16,7 @@
     "demo": [],
     "data": [
         'views/ocorrencia_view.xml',
+        'wizard/wizard_mapeamento_ocorrencias_view.xml',
         'views/action.xml',
         'views/menu.xml',
     ],

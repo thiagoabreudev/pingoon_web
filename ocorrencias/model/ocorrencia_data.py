@@ -23,7 +23,6 @@ class Ocorrencias(osv.Model):
         'ocorrencia_latitude': fields.char('latitude'),
         'ocorrencia_descricao_complementar': fields.text('Outras descricoes'),
         'ocorrencia_endereco_aproximado': fields.char('Endereco aproximado', readonly=True),
-
         #__M2O__
         'funcionario_id': fields.many2one('funcionario', 'Funcionario'),
 

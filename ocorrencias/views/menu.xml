@@ -6,6 +6,9 @@
         <menuitem name="Ocorrencias" id="menu_ocorrencias" parent="menu_ocorrencias_principal"/>
         <menuitem name="Lancamento de ocorrencia" id="menu_ocorrencias_lancamento"
                   parent="menu_ocorrencias" action="action_ocorrencia"/>
+        <menuitem name="Mapeamento de ocorrencias" id="menu_ocorrencias_mapeamento"
+                  parent="menu_ocorrencias"
+                  action="action_mapemanto_ocorrencias"/>
 
     </data>
 </openerp>

@@ -6,7 +6,7 @@ import xmlrpclib
 class Persistencia(object):
     def __init__(self):
         self.url = 'http://localhost:8069'
-        self.db = 'odoo_teste'
+        self.db = 'pingoon'
         self.username = 'admin'
         self.password = 'admin'
         self.common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(self.url))

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_orcorrencia_mapeamento_form">
+            <field name="name">view.wizard.ocorrencia.mapeamento</field>
+            <field name="model">wizard.ocorrencia.mapeamento</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de manutencao de ocorrencia" version="8.0">
+                    <group col="4">
+                        <button type="object" string="Gerar mapa" name="button_gerar_mapa"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_mapemanto_ocorrencias">
+            <field name="name">mapeamento de ocorrencia</field>
+            <field name="res_model">wizard.ocorrencia.mapeamento</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</openerp>
+
