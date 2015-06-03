@@ -34,7 +34,7 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
                     str(dado.get('ocorrencia_latitude')),
                     cont])
         self.gerar_html_mapa(markers, latlon)
-        url = 'http://localhost/mapas/mapa.html'
+        url = 'http://52.25.81.7/mapas/mapa.html'
         return {
             'type': 'ir.actions.act_url',
             'url': url,
