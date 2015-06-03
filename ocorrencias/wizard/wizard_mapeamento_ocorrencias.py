@@ -19,18 +19,20 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
         cont = 0
         latlon = False
         for dado in ocorrencia_dados:
-            if cont == 0:
-                lon = str(dado.get('ocorrencia_longitude'))
-                lon = lon.split('.')[0] + '.' + lon.split('.')[1][:2]
-                lat = str(dado.get('ocorrencia_latitude'))
-                lat = lat.split('.')[0] + '.' + lat.split('.')[1][:2]
-                latlon = (lon, lat)
-            cont += 1
-            markers.append([
-                str(dado.get('id')),
-                str(dado.get('ocorrencia_longitude')),
-                str(dado.get('ocorrencia_latitude')),
-                cont])
+            if dado.get('ocorrencia_latitude') != "SEM LATITUDE"\
+                    and dado.get('ocorrencia_longitude') != "SEM LONGITUDE":
+                if cont == 0:
+                    lon = str(dado.get('ocorrencia_longitude'))
+                    lon = lon.split('.')[0] + '.' + lon.split('.')[1][:2]
+                    lat = str(dado.get('ocorrencia_latitude'))
+                    lat = lat.split('.')[0] + '.' + lat.split('.')[1][:2]
+                    latlon = (lon, lat)
+                cont += 1
+                markers.append([
+                    str(dado.get('id')),
+                    str(dado.get('ocorrencia_longitude')),
+                    str(dado.get('ocorrencia_latitude')),
+                    cont])
         self.gerar_html_mapa(markers, latlon)
         url = 'http://localhost/mapas/mapa.html'
         return {
