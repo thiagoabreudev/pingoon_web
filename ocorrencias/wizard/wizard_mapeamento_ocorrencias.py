@@ -14,7 +14,8 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
         ocorrencia_ids = obj_ocorrencia.search(cr, uid, [])
         ocorrencia_dados = obj_ocorrencia.read(cr, uid, ocorrencia_ids, ['id',
                                                                          'ocorrencia_latitude',
-                                                                         'ocorrencia_longitude'])
+                                                                         'ocorrencia_longitude',
+                                                                         'state'])
         markers = []
         cont = 0
         latlon = False
@@ -28,18 +29,36 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
                     lat = lat.split('.')[0] + '.' + lat.split('.')[1][:2]
                     latlon = (lon, lat)
                 cont += 1
+                icon = self.get_icon_state(dado.get('state'))
                 markers.append([
                     str(dado.get('id')),
                     str(dado.get('ocorrencia_longitude')),
                     str(dado.get('ocorrencia_latitude')),
-                    cont])
+                    cont,
+                    icon])
         self.gerar_html_mapa(markers, latlon)
-        url = 'http://52.25.81.7/mapas/mapa.html'
+        url = 'http://52.25.81.7/html/mapas/mapa.html'
+        # url = 'http://localhost/mapas/mapa.html'
         return {
             'type': 'ir.actions.act_url',
             'url': url,
             'target': 'new'
         }
+
+    @staticmethod
+    def get_icon_state(state):
+        icon = ''
+        if state == '1':
+            icon = 'blue-dot.png'
+        elif state == '2':
+            icon = 'ltblue-dot.png'
+        elif state == '3':
+            icon = 'orange-dot.png'
+        elif state == '4':
+            icon = 'yellow-dot.png'
+        elif state == '5':
+            icon = 'red-dot.png'
+        return icon
 
     @staticmethod
     def gerar_html_mapa(markers, latlon):
@@ -69,9 +88,11 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
                     var marker, i;
 
                     for (i = 0; i < locations.length; i++) {
+                        icon = 'http://maps.google.com/mapfiles/ms/icons/' + locations[i][4];
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                            map: map
+                            map: map,
+                            icon: icon,
                         });
 
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
