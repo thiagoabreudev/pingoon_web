@@ -62,7 +62,7 @@ echo "
 | 3) Pull (baixar)      |
 | 4) Push (enviar)      |
 | 5) Fetch (atuallizar) |
-| 6) commit, add, push  |
+| 6) add, commit, push  |
 | 0) Exit               |
 +=======================+"
 read opcaoMenu
@@ -73,10 +73,6 @@ read opcaoMenu
 # ======================== PRINCIPAL =========================== #
 
 usuario=`id -u`
-clear
-if [ $usuario != "0" ]; then
-    echo "Necessário logar como root"
-else
     menu
     if [ $opcaoMenu == "1" ]; then
         commit
@@ -97,5 +93,4 @@ else
     else
         echo "Opção Inválida! Tente novamente"
         menu
-    fi
-fi    
+    fi    
