@@ -1,0 +1,106 @@
+#!/bin/bash
+
+# +--------------------------------------------------------------+
+# |author:diego.sousa                                            |
+# |desc:usa comandos do github automaticos                       |
+# |versao: 1.0                                                   |
+# +--------------------------------------------------------------+
+# +--------------------------------------------------------------+
+# |		Facilitar o uso do git       			 |
+# +--------------------------------------------------------------+
+# -------------------------------------------------------------- #
+# ======================== FUNCOES ============================= #
+
+commit() {
+    echo "Escreva uma mensagem para o commit"
+        read mensagem
+    git commit -m "$mensagem"
+}
+
+pull () {
+    echo "Nome do Projeto"
+        read nomeProjeto
+    git pull $nomeProjeto master
+}
+
+push (){
+    echo "Nome do Projeto"
+        read nomeProjeto
+    git push $nomeProjeto master
+}
+
+add () {
+    echo 
+    "
+    +-------------------------------+
+    |1) Todo Projeto     2) Arquivo |
+    +-------------------------------+
+    "
+    read op
+    
+    if [ $op == "1" ]; then
+        git add .
+    elif [ $op == "2" ]; then
+        echo "Qual parte deseja atualizar?"
+            read arquivo
+            git add $arquivo
+    else
+        echo "Opção Inválida, tente novamente!"
+        add
+   fi
+}
+
+fetch () {
+    echo "Nome do Projeto"
+        read nomeProjeto
+    git fetch $nomeProjeto
+}
+
+menu () {
+echo
+"
++======== OPÇÕES =======+
+| 1) Commit             |
+| 2) Add (local)        |
+| 3) Pull (baixar)      |
+| 4) Push (enviar)      |
+| 5) Fetch (atuallizar) |
+| 6) commit, add, push  |
+| 0) Exit               |
++=======================+
+"
+read opcaoMenu
+}
+
+# ======================== /FUNCOES ============================ #
+# -------------------------------------------------------------- #
+# ======================== PRINCIPAL =========================== #
+
+usuario=`id -u`
+
+if [ $usuario != "0" ]; then
+    echo "Necessário logar como root"
+else
+    
+    menu
+    if [ $opcaoMenu == "1" ]; then
+        commit
+    elif [ $opcaoMenu == "2" ]; then
+        add
+    elif [ $opcaoMenu == "3" ]; then
+        pull
+    elif [ $opcaoMenu == "4" ]; then
+        push
+    elif [ $opcaoMenu == "5" ]; then
+        fetch
+    elif [ $opcaoMenu == "6" ]; then
+        commit
+        add
+        push
+    elif [ $opcaoMenu == "0" ]; then
+        exit
+    else
+        echo "Opção Inválida! Tente novamente"
+        menu
+    fi
+fi    
