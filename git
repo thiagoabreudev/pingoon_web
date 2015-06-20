@@ -30,12 +30,10 @@ push (){
 }
 
 add () {
-    echo 
-    "
+    echo "
     +-------------------------------+
     |1) Todo Projeto     2) Arquivo |
-    +-------------------------------+
-    "
+    +-------------------------------+"
     read op
     
     if [ $op == "1" ]; then
@@ -57,8 +55,7 @@ fetch () {
 }
 
 menu () {
-echo
-"
+echo "
 +======== OPÇÕES =======+
 | 1) Commit             |
 | 2) Add (local)        |
@@ -67,8 +64,7 @@ echo
 | 5) Fetch (atuallizar) |
 | 6) commit, add, push  |
 | 0) Exit               |
-+=======================+
-"
++=======================+"
 read opcaoMenu
 }
 
@@ -77,11 +73,10 @@ read opcaoMenu
 # ======================== PRINCIPAL =========================== #
 
 usuario=`id -u`
-
+clear
 if [ $usuario != "0" ]; then
     echo "Necessário logar como root"
 else
-    
     menu
     if [ $opcaoMenu == "1" ]; then
         commit
@@ -94,8 +89,8 @@ else
     elif [ $opcaoMenu == "5" ]; then
         fetch
     elif [ $opcaoMenu == "6" ]; then
-        commit
         add
+        commit
         push
     elif [ $opcaoMenu == "0" ]; then
         exit
