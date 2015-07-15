@@ -27,8 +27,8 @@ class Ocorrencia(osv.Model):
             longitude = dado.get('ocorrencia_longitude')
             latitude = dado.get('ocorrencia_latitude')
 
-        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + longitude + "," + latitude+\
-              "&markers="+longitude+"," + latitude + "&zoom=16&size=640x640"
+        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude+\
+              "&markers="+latitude+"," + longitude + "&zoom=16&size=640x640"
         return {
             'type': 'ir.actions.act_url',
             'url': url,
@@ -55,7 +55,7 @@ class Ocorrencia(osv.Model):
     def get_endereco_aproximado(longitude, latitude):
         endereco = "Nao foi possivel encontrar endereco aproximado"
         try:
-            url = 'http://maps.google.com/maps/api/geocode/json?address={long},{lat}&sensor=false'
+            url = 'http://maps.google.com/maps/api/geocode/json?address={lat},{long}&sensor=false'
             url = url.format(long=longitude, lat=latitude)
             requisicao = requests.get(url)
             if requisicao.status_code == 200:
@@ -68,10 +68,10 @@ class Ocorrencia(osv.Model):
 
     @staticmethod
     def get_mapa(longitude, latitude):
-        mapa =  False
+        mapa = False
         try:
-            url = "https://maps.googleapis.com/maps/api/staticmap?center=" + longitude + "," +latitude +\
-                  "&markers="+longitude+"," + latitude + "&zoom=17&size=640x640"
+            url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," +longitude +\
+                  "&markers="+latitude+"," + longitude + "&zoom=17&size=640x640"
             requisicao = requests.get(url)
             mapa = False
             if requisicao.status_code == 200:

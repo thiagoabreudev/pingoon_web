@@ -37,8 +37,8 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
                     cont,
                     icon])
         self.gerar_html_mapa(markers, latlon)
-        url = 'http://52.25.81.7/mapas/mapa.html'
-        # url = 'http://localhost/mapas/mapa.html'
+        # url = 'http://52.25.81.7/mapas/mapa.html'
+        url = 'http://localhost/mapas/mapa.html'
         return {
             'type': 'ir.actions.act_url',
             'url': url,
