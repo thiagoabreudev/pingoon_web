@@ -27,13 +27,13 @@ class wizard_ocorrencia_mapeamento(osv.TransientModel):
                     lon = lon.split('.')[0] + '.' + lon.split('.')[1][:2]
                     lat = str(dado.get('ocorrencia_latitude'))
                     lat = lat.split('.')[0] + '.' + lat.split('.')[1][:2]
-                    latlon = (lon, lat)
+                    latlon = (lat, lon)
                 cont += 1
                 icon = self.get_icon_state(dado.get('state'))
                 markers.append([
                     str(dado.get('id')),
-                    str(dado.get('ocorrencia_longitude')),
                     str(dado.get('ocorrencia_latitude')),
+                    str(dado.get('ocorrencia_longitude')),
                     cont,
                     icon])
         self.gerar_html_mapa(markers, latlon)
