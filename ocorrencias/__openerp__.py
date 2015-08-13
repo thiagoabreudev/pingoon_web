@@ -12,10 +12,12 @@
     "license": "Other proprietary",
     "depends": [
         'base_setup',
+        'board',
         ],
     "demo": [],
     "data": [
         'views/ocorrencia_view.xml',
+        'views/ocorrencia_dashboard.xml',
         'wizard/wizard_mapeamento_ocorrencias_view.xml',
         'views/action.xml',
         'views/menu.xml',

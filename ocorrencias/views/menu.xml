@@ -10,5 +10,9 @@
                   parent="menu_ocorrencias"
                   action="action_mapemanto_ocorrencias"/>
 
+        <!--Dashboard-->
+        <menuitem name="Dashboard de ocorrencias" parent="base.menu_reporting_dashboard"
+                  action="open_board_session" sequence="1" id="menu_ocorrencia_dashboard"
+                  icon="terp-graph"/>
     </data>
 </openerp>

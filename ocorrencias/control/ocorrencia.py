@@ -4,6 +4,7 @@
 from openerp.osv import osv
 import requests
 import json
+import datetime
 
 
 class Ocorrencia(osv.Model):
@@ -16,6 +17,7 @@ class Ocorrencia(osv.Model):
         mapa = self.get_mapa(vals.get('ocorrencia_longitude'), vals.get('ocorrencia_latitude'))
         vals['ocorrencia_endereco_aproximado'] = endereco_aproximado
         vals['ocorrencia_mapa'] = mapa
+        vals['ocorrencia_data'] = datetime.datetime.today()
         res = super(Ocorrencia, self).create(cr, uid, vals)
         return res
 

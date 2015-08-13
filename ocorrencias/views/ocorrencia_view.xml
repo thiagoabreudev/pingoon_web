@@ -1,12 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="view_ocorrencia_graph">
-            <field name="name">view.ocorrencia.graph</field>
+        <record model="ir.ui.view" id="view_ocorrencia_state_graph">
+            <field name="name">Grafico por status</field>
             <field name="model">ocorrencia</field>
             <field name="arch" type="xml">
-                <graph string="Graficos">
-                    <field name="state" type="bar" group="True"/>
+                <graph string="Por estado..." type="pie">
+                    <field name="state"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_ocorrencia_criticidade_graph">
+            <field name="name">Grafico por criticidade</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <graph string="Por criticidade..." type="pie">
+                    <field name="ocorrencia_criticidade"/>
                 </graph>
             </field>
         </record>
@@ -16,10 +25,14 @@
             <field name="model">ocorrencia</field>
             <field name="arch" type="xml">
                 <search string="Filtro">
-                    <group col="2" colspan="4">
-                        <group expand="1" string="Agrupar por...">
-                            <filter string="Estado" name="state" context="{'group_by': 'state'}"/>
-                        </group>
+                    <group>
+                        <field name="state"/>
+                    </group>
+                    <group string="agrupar por...">
+                        <filter string="Estado" name="state"
+                                domain="[]"
+                                default="True"
+                                context="{'group_by': 'state'}"/>
                     </group>
                 </search>
             </field>
@@ -54,6 +67,10 @@
                             <newline/>
                         </group>
                         <separator string="Descricao do problema:"/>
+                        <group col="4">
+                            <field name="ocorrencia_data"/>
+                            <field name="ocorrencia_criticidade"/>
+                        </group>
                         <group col="2">
                             <field name="ocorrencia_descricao" placeholder="Descricao" nolabel="1"/>
                             <newline/>
@@ -99,9 +116,22 @@
                     <field name="id" string="Nro Ocorrencia"/>
                     <field name="ocorrencia_titulo"/>
                     <field name="state"/>
+                    <field name="ocorrencia_data"/>
+                    <field name="ocorrencia_criticidade"/>
                     <button type="object" name="button_mapa" icon="mapa" string="Ver mapa"
                             style="width:16px;height:16px;"/>
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_ocorrencia_calendar">
+            <field name="name">Calendario de ocorrencias</field>
+            <field name="model">ocorrencia</field>
+            <field name="arch" type="xml">
+                <calendar
+                        color="state"
+                        string="Calendario de ocorrencias" date_start="ocorrencia_data">
+                    <field name="ocorrencia_titulo"/>
+                </calendar>
             </field>
         </record>
     </data>
